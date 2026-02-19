@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Mubarak</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #f6f1e8, #e8dcc8);
+    overflow: hidden;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Crescent Moon */
+.crescent {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    background: #fff5c3;
+    border-radius: 50%;
+    box-shadow: 0 0 25px #fff0a5;
+}
+
+.crescent::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 100px;
+    height: 100px;
+    background: #f6f1e8;
+    border-radius: 50%;
+}
+
+/* Mosque */
+.mosque {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 180px;
+    background: url('https://i.imgur.com/9QZ7Z8F.png') no-repeat bottom center;
+    background-size: cover;
+    opacity: 0.3;
+}
+
+/* Main Card */
+.scroller {
+    width: 95%;
+    max-width: 900px;
+    background: #f6f1e8;
+    border: 8px solid #c19a6b;
+    border-radius: 20px;
+    padding: 35px 20px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(139,111,71,0.3);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 2s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* Show Card */
+.scroller.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Heading */
+.scroller h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    color: #800000;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+/* Show Heading */
+.scroller.show h1 {
+    opacity: 1;
+}
+
+/* Hidden Content */
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 3s ease, opacity 2s ease;
+    opacity: 0;
+}
+
+/* Open Content */
+.content.open {
+    max-height: 5000px;
+    opacity: 1;
+}
+
+/* Text */
+.content p {
+    font-size: 16px;
+    color: #800000;
+    line-height: 1.7;
+    margin-top: 20px;
+    white-space: pre-line;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .scroller h1 {
+        font-size: 28px;
+    }
+    .content p {
+        font-size: 14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="https://www.islamcan.com/audio/allahu-allah.mp3" type="audio/mpeg">
+</audio>
+
+<div class="hero" onclick="startReveal()">
+
+    <div class="crescent"></div>
+
+    <div class="scroller" id="card">
+        <h1>Eid Mubarak to All my friends and family members</h1>
+
+        <div class="content" id="eidContent">
+            <p>
+May Allah make your Eid filled with joy and happiness and fulfill all your wishes. 🌙✨
+May your days ahead be brighter than the moon of Eid night and your smile remain as beautiful as today. 🌙💫
+May Allah bless you with peace, prosperity and success.
+
+Eid Mubarak to you and your loved ones!
+
+Regards:
+Usman
+            </p>
+        </div>
+    </div>
+
+    <div class="mosque"></div>
+
+</div>
+
+<script>
+
+let started = false;
+
+function startReveal() {
+
+    if(started) return;
+    started = true;
+
+    const card = document.getElementById("card");
+    const content = document.getElementById("eidContent");
+
+    card.classList.add("show");
+
+    setTimeout(() => {
+        content.classList.add("open");
+        document.body.style.overflow = "auto";
+    }, 2000);
+}
+
+</script>
+
+</body>
+</html>
