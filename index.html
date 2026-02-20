@@ -3,22 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal 3D Eid Scroll</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<title>Royal Eid Scroll</title>
 
 <style>
-
 body{
     margin:0;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:radial-gradient(circle,#f6f1e8,#e8dcc8);
-    font-family:'Poppins',sans-serif;
+    background:radial-gradient(circle at top,#0f2027,#203a43,#2c5364);
     perspective:2000px;
     overflow:hidden;
+}
+
+/* Moon */
+.moon{
+    position:absolute;
+    top:60px;
+    right:80px;
+    width:120px;
+    height:120px;
+    background:#fff8dc;
+    border-radius:50%;
+    box-shadow:0 0 60px #fff8dc;
+}
+
+/* Floating Lanterns */
+.lantern{
+    position:absolute;
+    bottom:-100px;
+    font-size:28px;
+    animation:float 12s linear infinite;
+}
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-120vh);}
 }
 
 /* Scroll Wrapper */
@@ -27,96 +47,90 @@ body{
     width:750px;
     max-width:95%;
     cursor:pointer;
-    transform-style:preserve-3d;
-    transition:transform 1s ease;
 }
 
 /* Rolls */
 .roll{
-    height:55px;
+    height:60px;
     background:linear-gradient(to right,#d4af37,#b8860b,#d4af37);
     border-radius:30px;
-    box-shadow:0 15px 25px rgba(0,0,0,0.4);
+    box-shadow:0 20px 30px rgba(0,0,0,0.6);
 }
 
 /* Paper */
 .paper{
-    background:#fdf6e3 url('border.png') no-repeat center;
-    background-size:contain;
+    background:#fdf6e3;
     height:0;
     overflow:hidden;
-    transform-origin:top;
     transition:height 2s ease;
-    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    box-shadow:0 25px 50px rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
     position:relative;
 }
 
-/* Open State */
+/* Arabic transparent Eid Mubarak */
+.arabic-bg{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:120px;
+    color:rgba(139,0,0,0.08);
+    font-family:'Amiri', serif;
+    pointer-events:none;
+}
+
+/* Open */
 .scroll-wrapper.open .paper{
     height:650px;
 }
 
-/* Text Area */
-.content{
-    position:absolute;
-    top:18%;
-    left:12%;
-    width:76%;
-    text-align:center;
-    color:#800000;
+/* Image Inside */
+.paper img{
+    width:90%;
+    height:auto;
+    border-radius:10px;
 }
 
-.content h1{
-    font-family:'Great Vibes',cursive;
-    font-size:44px;
-    margin:0;
-}
-
-.content p{
-    margin-top:25px;
-    line-height:1.9;
-    font-size:18px;
-}
-
-/* Responsive */
 @media(max-width:600px){
     .scroll-wrapper.open .paper{
         height:500px;
     }
-    .content h1{
-        font-size:28px;
-    }
-    .content p{
-        font-size:14px;
-    }
 }
 
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+<div class="moon"></div>
+
+<!-- Floating Lanterns -->
+<div class="lantern" style="left:10%;">🏮</div>
+<div class="lantern" style="left:30%; animation-delay:3s;">🏮</div>
+<div class="lantern" style="left:50%; animation-delay:6s;">🏮</div>
+<div class="lantern" style="left:70%; animation-delay:2s;">🏮</div>
+<div class="lantern" style="left:90%; animation-delay:5s;">🏮</div>
+
+<!-- Nasheed -->
 <audio id="nasheed" preload="auto">
     <source src="https://files.catbox.moe/bawxf8.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Scroll -->
 <div class="scroll-wrapper" onclick="openScroll()" id="scroll">
 
     <div class="roll"></div>
 
     <div class="paper">
-        <div class="content">
-            <h1>Eid Mubarak</h1>
-            <p>
-May Allah make your Eid filled with joy and happiness and fulfill all your wishes. 🌙✨
-May your days ahead be brighter than the moon of Eid night and your smile remain as beautiful as today. 🌙💫
-May Allah bless you with peace, prosperity and success.
+        <!-- Arabic Transparent Background -->
+        <div class="arabic-bg">عيد مبارك</div>
 
-Eid Mubarak to you and your loved ones!
-                                       Regards:
-                                          Usman
-            </p>
-        </div>
+        <!-- Your Image -->
+        <img src="your-image.png" alt="Eid Card">
     </div>
 
     <div class="roll"></div>
@@ -124,7 +138,6 @@ Eid Mubarak to you and your loved ones!
 </div>
 
 <script>
-
 let opened=false;
 
 function openScroll(){
@@ -133,11 +146,11 @@ function openScroll(){
 
     document.getElementById("scroll").classList.add("open");
 
-    const audio=document.getElementById("nasheed");
-    audio.volume=0.8;
+    // Play Nasheed
+    const audio = document.getElementById("nasheed");
+    audio.volume = 0.8;
     audio.play();
 }
-
 </script>
 
 </body>
